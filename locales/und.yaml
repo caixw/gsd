@@ -7,26 +7,6 @@ messages:
 - key: export object name
   message:
     msg: export object name
-- key: gen markdown
-  message:
-    msg: gen markdown
-- key: |
-    markdown usage
-    
-    usage:
-      web mdoc [options]
-    
-      options:
-      {{flags}}
-  message:
-    msg: |
-      markdown usage
-      
-      usage:
-        web mdoc [options]
-      
-        options:
-        {{flags}}
 - key: not found source in %s
   message:
     msg: not found source in %s
@@ -48,6 +28,9 @@ messages:
 - key: set source dir
   message:
     msg: set source dir
+- key: show version
+  message:
+    msg: show version
 - key: type
   message:
     msg: type

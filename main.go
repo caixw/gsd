@@ -9,6 +9,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"os"
+	"runtime"
+	"runtime/debug"
 
 	"github.com/issue9/localeutil"
 
@@ -16,16 +20,6 @@ import (
 )
 
 const (
-	title = localeutil.StringPhrase("gen markdown")
-	usage = localeutil.StringPhrase(`markdown usage
-
-usage:
-  web mdoc [options]
-
-  options:
-  {{flags}}
-`)
-
 	objectUsage = localeutil.StringPhrase("export object name")
 	dirUsage    = localeutil.StringPhrase("set source dir")
 	outputUsage = localeutil.StringPhrase("set markdown doc path")
@@ -42,6 +36,7 @@ func main() {
 
 	fs := flag.NewFlagSet("gsd", flag.ExitOnError)
 
+	v := fs.Bool("v", false, localeutil.StringPhrase("show version").LocaleString(p))
 	obj := fs.String("object", "", objectUsage.LocaleString(p))
 	dir := fs.String("dir", "", dirUsage.LocaleString(p))
 	output := fs.String("o", "", outputUsage.LocaleString(p))
@@ -49,7 +44,25 @@ func main() {
 	title := fs.String("title", "config", titleUsage.LocaleString(p))
 	desc := fs.String("desc", "", descUsage.LocaleString(p))
 
+	if err := fs.Parse(os.Args[1:]); err != nil {
+		panic(err)
+	}
+
+	if *v {
+		if _, err := fmt.Fprintf(fs.Output(), "gsd: %s\nbuild with: %s\n", getAppVersion(""), runtime.Version()); err != nil {
+			panic(err)
+		}
+		return
+	}
+
 	if err := export(*dir, *obj, *output, *lang, *title, *desc); err != nil {
 		panic(err)
 	}
+}
+
+func getAppVersion(v string) string {
+	if info, ok := debug.ReadBuildInfo(); ok {
+		return info.Main.Version
+	}
+	return v
 }

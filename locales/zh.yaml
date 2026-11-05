@@ -9,26 +9,6 @@ messages:
 - key: export object name
   message:
     msg: 被导出的对象名
-- key: gen markdown
-  message:
-    msg: 生成 markdown 文档
-- key: |
-    markdown usage
-    
-    usage:
-      web mdoc [options]
-    
-      options:
-      {{flags}}
-  message:
-    msg: |
-      生成 markdown 文档
-      
-      语法:
-        web mdoc [options]
-      
-        options 可用的参数:
-        {{flags}}
 - key: not found source in %s
   message:
     msg: 在 %s 中未找到符合要求的源码
@@ -50,6 +30,9 @@ messages:
 - key: set source dir
   message:
     msg: 设置源码的路径
+- key: show version
+  message:
+    msg: 显示版本信息
 - key: type
   message:
     msg: 类型
