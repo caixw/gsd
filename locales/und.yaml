@@ -1,0 +1,53 @@
+languages:
+- und
+messages:
+- key: description
+  message:
+    msg: description
+- key: export object name
+  message:
+    msg: export object name
+- key: gen markdown
+  message:
+    msg: gen markdown
+- key: |
+    markdown usage
+    
+    usage:
+      web mdoc [options]
+    
+      options:
+      {{flags}}
+  message:
+    msg: |
+      markdown usage
+      
+      usage:
+        web mdoc [options]
+      
+        options:
+        {{flags}}
+- key: not found source in %s
+  message:
+    msg: not found source in %s
+- key: not found type doc
+  message:
+    msg: not found type doc
+- key: set markdown doc path
+  message:
+    msg: set markdown doc path
+- key: set markdown page description
+  message:
+    msg: set markdown page description
+- key: set markdown page language
+  message:
+    msg: set markdown page language
+- key: set markdown page title
+  message:
+    msg: set markdown page title
+- key: set source dir
+  message:
+    msg: set source dir
+- key: type
+  message:
+    msg: type
