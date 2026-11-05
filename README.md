@@ -1,10 +1,10 @@
 # gsd
 
-[![Go](https://github.com/caixw/gostructdoc/actions/workflows/go.yml/badge.svg)](https://github.com/caixw/gostructdoc/actions/workflows/go.yml)
-[![codecov](https://codecov.io/gh/caixw/gostructdoc/branch/master/graph/badge.svg)](https://codecov.io/gh/caixw/gostructdoc)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/caixw/gostructdoc)](https://pkg.go.dev/github.com/caixw/gostructdoc)
-![Go version](https://img.shields.io/github/go-mod/go-version/caixw/gostructdoc)
-![License](https://img.shields.io/github/license/caixw/gostructdoc)
+[![Go](https://github.com/caixw/gsd/actions/workflows/go.yml/badge.svg)](https://github.com/caixw/gsd/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/caixw/gsd/branch/master/graph/badge.svg)](https://codecov.io/gh/caixw/gsd)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/caixw/gsd)](https://pkg.go.dev/github.com/caixw/gsd)
+![Go version](https://img.shields.io/github/go-mod/go-version/caixw/gsd)
+![License](https://img.shields.io/github/license/caixw/gsd)
 
 将 Go 的结构体字段提取出来形成 markdown 文档
 
@@ -12,13 +12,13 @@
 ---
 
 ```bash
-go install github.com/caixw/gostructdoc
+go install github.com/caixw/gsd
 ```
 
 如果是在 `go:generate` 中使用，也可以直接使用以下命令写入 go.mod 中：
 
 ```bash
-go get -tool github.com/caixw/gostructdoc
+go get -tool github.com/caixw/gsd
 ```
 
 版权
