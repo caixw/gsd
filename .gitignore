@@ -13,3 +13,11 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+.vscode/
+.vs/
+.idea/
+*.swp
+
+*.out.md
+*.out.html
