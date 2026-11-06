@@ -5,8 +5,6 @@
 package main
 
 import (
-	"go/parser"
-	"go/token"
 	"testing"
 
 	"github.com/issue9/assert/v6"
@@ -28,12 +26,11 @@ func TestData_parse(t *testing.T) {
 	p, err := locales.NewPrinter("zh-CN")
 	a.NotError(err).NotNil(p)
 
-	fset := token.NewFileSet()
-	pkgs, err := parser.ParseDir(fset, "./testdata", nil, parser.ParseComments)
-	a.NotError(err).NotNil(pkgs)
+	files, err := loadSourceFiles("./testdata")
+	a.NotError(err).NotNil(files)
 
 	d := &data{}
-	d.parse(p, "object", pkgs["testdata"].Files)
+	d.parse(p, "object", files)
 	a.Length(d.Objects, 2)
 
 	o1 := d.Objects[0]

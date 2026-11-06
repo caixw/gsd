@@ -41,7 +41,7 @@ func main() {
 	dir := fs.String("dir", "", dirUsage.LocaleString(p))
 	output := fs.String("o", "", outputUsage.LocaleString(p))
 	lang := fs.String("lang", "cmn-Hans", langUsage.LocaleString(p))
-	title := fs.String("title", "config", titleUsage.LocaleString(p))
+	title := fs.String("title", "", titleUsage.LocaleString(p))
 	desc := fs.String("desc", "", descUsage.LocaleString(p))
 
 	if err := fs.Parse(os.Args[1:]); err != nil {

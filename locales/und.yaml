@@ -7,6 +7,9 @@ messages:
 - key: export object name
   message:
     msg: export object name
+- key: "load package %[1]s: %[2]s"
+  message:
+    msg: "load package %[1]s: %[2]s"
 - key: not found source in %s
   message:
     msg: not found source in %s

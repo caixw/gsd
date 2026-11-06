@@ -18,6 +18,7 @@ import (
 	"strings"
 
 	"github.com/issue9/localeutil"
+	"golang.org/x/tools/go/packages"
 
 	"github.com/caixw/gsd/locales"
 )
@@ -63,18 +64,9 @@ func export(dir, objName, output, lang, title, desc string) error {
 		return err
 	}
 
-	fset := token.NewFileSet()
-	pkgs, err := parser.ParseDir(fset, dir, nil, parser.ParseComments)
+	files, err := loadSourceFiles(dir)
 	if err != nil {
 		return err
-	}
-
-	var files map[string]*ast.File
-	for name, pkg := range pkgs {
-		if name != "main" && !strings.HasSuffix(name, "_test") { // 过滤测试包和 make_* 的包
-			files = pkg.Files
-			break
-		}
 	}
 
 	if files == nil {
@@ -102,6 +94,38 @@ func export(dir, objName, output, lang, title, desc string) error {
 	}
 
 	return errors.Join(t.Execute(f, d), f.Close())
+}
+
+func loadSourceFiles(dir string) (map[string]*ast.File, error) {
+	pkgs, err := packages.Load(&packages.Config{
+		Mode: packages.NeedName | packages.NeedCompiledGoFiles,
+		Dir:  dir,
+	}, ".")
+	if err != nil {
+		return nil, err
+	}
+
+	for _, pkg := range pkgs {
+		if pkg.Name == "main" || strings.HasSuffix(pkg.Name, "_test") {
+			continue
+		}
+		if len(pkg.Errors) > 0 {
+			return nil, localeutil.Error("load package %[1]s: %[2]s", pkg.PkgPath, pkg.Errors[0].Msg)
+		}
+
+		files := make(map[string]*ast.File, len(pkg.CompiledGoFiles))
+		fset := token.NewFileSet()
+		for _, path := range pkg.CompiledGoFiles {
+			file, err := parser.ParseFile(fset, path, nil, parser.ParseComments)
+			if err != nil {
+				return nil, err
+			}
+			files[path] = file
+		}
+		return files, nil
+	}
+
+	return nil, nil
 }
 
 func (d *data) parse(p *localeutil.Printer, outputObj string, files map[string]*ast.File) {

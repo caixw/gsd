@@ -6,9 +6,9 @@ package main
 
 const tpl = `# {{.Title}}
 
-{{if .Desc}}{{.Desc}}{{end -}}
+{{if .Desc}}{{.Desc}}{{end}}
 
-{{- range .Objects}}
+{{range .Objects}}
 {{if .Title}}## {{.Title}}{{end}}
 
 {{if .Desc}}{{.Desc}}{{end}}

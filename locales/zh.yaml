@@ -9,6 +9,9 @@ messages:
 - key: export object name
   message:
     msg: 被导出的对象名
+- key: "load package %[1]s: %[2]s"
+  message:
+    msg: "加载包 %[1]s 时出现以下错误 %[2]s"
 - key: not found source in %s
   message:
     msg: 在 %s 中未找到符合要求的源码
